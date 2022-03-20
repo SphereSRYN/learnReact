@@ -13,11 +13,11 @@ function App() {
   const [mode, setMode] = useState("welcome");
   const [id, setId] = useState(null);
   const [topics, setTopics] = useState([
-    { id: 1, title: "html", body: "html.." },
+    { id: 1, title: "htmld", body: "html.." },
     { id: 2, title: "js", body: "js.." },
     { id: 3, title: "css", body: "css.." },
   ]);
-  const [nextId, setNextId] = useState(topics.length + 1);
+  const [nextId, setNextId] = useState(4);
 
   let content = null;
 
@@ -38,7 +38,12 @@ function App() {
       <Create
         onCreate={(_title, _body) => {
           const newTopic = { title: _title, body: _body };
-          setTopics(newTopic);
+          const newTopics = [...topics];
+          newTopics.push(newTopic);
+          setTopics(newTopics);
+          setMode("READ");
+          setId(nextId);
+          setNextId(nextId + 1);
         }}
       />
     );
